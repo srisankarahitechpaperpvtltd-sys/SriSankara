@@ -76,30 +76,29 @@ HEADER
 ========================= */
 
 header{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  padding:25px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  z-index:9999;
+  background:transparent;
+}
+@media (max-width:768px){
+  header{
+    flex-direction:column;
+    gap:10px;
+    padding:15px 5%;
+  }
 
-position:absolute;
-
-top:0;
-left:0;
-
-width:100%;
-
-padding:25px 8%;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-z-index:9999;
-
-background:transparent;
-
-backdrop-filter:none;
-
-box-shadow:none;
-
+  nav{
+    gap:12px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
 }
 
 .logo{
@@ -192,24 +191,41 @@ CLOUDINARY HERO
 ========================= */
 
 .hero-video{
-
-width:100%;
-
-height:100vh;
-
-overflow:hidden;
-
-position:relative;
-
+  width:100%;
+  height:100vh;
+  min-height:520px;
+  overflow:hidden;
+  position:relative;
 }
 
 .hero-video video{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-width:100%;
+.desktop-video{
+  display:block;
+}
 
-height:100%;
+.mobile-video{
+  display:none;
+}
 
-object-fit:cover;
+@media (max-width:768px){
+
+  .desktop-video{
+    display:none;
+  }
+
+  .mobile-video{
+    display:block;
+    object-fit:cover;
+    object-position:center center;
+  }
 
 }
 
@@ -238,7 +254,7 @@ TAGLINE
 
 .hero-tagline{
 
-padding:120px 8%;
+padding:100px 8% 40px;
 
 text-align:center;
 
@@ -247,24 +263,26 @@ background:#FFFDF7;
 }
 
 .hero-tagline h1{
-
-font-size:80px;
-
-line-height:1.1;
-
-font-weight:800;
-
-color:var(--dark);
-
-max-width:1100px;
-
-margin:auto;
-
+  font-size:80px;
+  line-height:1.1;
+  font-weight:800;
+  color:var(--dark);
+  max-width:1100px;
+  margin:auto;
 }
+
+@media (max-width:768px){
+  .hero-tagline h1{
+    font-size:32px;
+  }
+}
+
+
 
 .hero-tagline p{
 
 margin-top:30px;
+margin-bottom:20px;
 
 font-size:22px;
 
@@ -345,19 +363,53 @@ transition:.4s;
 }
 
 .gold-btn:hover{
-
-transform:
-translateY(-5px);
-
+  transform: translateY(-3px);
 }
 
+.gold-btn:active{
+  transform: scale(0.96);
+}
 /* =========================
 MOBILE
 ========================= */
 
-@media(max-width:900px){
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
 
-.hero-tagline h1{
+  section {
+    padding: 50px 5% !important;
+  }
+
+  .hero-tagline h1{
+    font-size: 34px;
+    line-height: 1.2;
+  }
+
+  .hero-tagline p{
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  nav{
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logo img{
+    height: 42px;
+  }
+
+  .section-title h2{
+    font-size: 34px;
+  }
+
+  .section-title p{
+    font-size: 15px;
+  }
+}
 
 font-size:42px;
 
@@ -395,11 +447,11 @@ height:50px;
 
 <!--img src="logo.png" alt="logo"-->
 
-<div class="logo-text">
+<!--div class="logo-text">
 
-Sri <span>Sankara</span>
-
-</div>
+Sri <span>Sankara</span> <br>
+Hitech Paper <span> Pvt Ltd<span>
+</div-->
 
 </div>
 
@@ -431,7 +483,9 @@ Contact
 
 <section class="hero-video">
 
+<!-- Desktop Video -->
 <video
+class="desktop-video"
 autoplay
 muted
 loop
@@ -439,6 +493,20 @@ playsinline>
 
 <source
 src="https://res.cloudinary.com/dtxjnoy4m/video/upload/v1781000439/video_2026-06-09_15-49-54_t6ybhy.mp4"
+type="video/mp4">
+
+</video>
+
+<!-- Mobile 9:16 Video -->
+<video
+class="mobile-video"
+autoplay
+muted
+loop
+playsinline>
+
+<source
+src="https://res.cloudinary.com/dtxjnoy4m/video/upload/v1781105107/Sankara_logo_on_branded_products_202606102030_wdm2jr.mp4"
 type="video/mp4">
 
 </video>
@@ -465,11 +533,19 @@ specializes in premium-quality Napkin Tissues,
 Toilet Rolls, Kitchen Rolls, Paper Cups and
 Paper Plates, delivering hygienic, eco-friendly
 and reliable solutions for businesses across India.
+<br>
 
 </p>
 
-</section>
+<a
+href="https://drive.google.com/uc?export=download&id=1KfGtLes4sUp4ZTSM1l4EzM611cCMoZMk"
+target="_blank"
+class="gold-glow-btn brochure-btn">
 
+<i class="bi bi-download"></i>
+<span>    Download Brochure </span>
+</a>
+</section>
 
 </div>
 
@@ -496,7 +572,7 @@ Our Products
 Premium tissue products.
 </p>
 
-<button onclick="addProduct('Napkin Tissue')">
+<button class="gold-glow-btn" onclick="addProduct('Napkin Tissue')">
 
 Add To Enquiry
 
@@ -600,9 +676,14 @@ Add To Enquiry
 
 <style>
 
+html, body{
+    max-width:100%;
+    overflow-x:hidden;
+}
+
 #products{
 
-padding:120px 8%;
+padding:40px 8% 120px;
 
 }
 
@@ -620,14 +701,15 @@ font-size:50px;
 }
 
 .product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:30px;
+}
 
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(280px,1fr));
-
-gap:30px;
-
+@media (max-width:768px){
+  .product-grid{
+    grid-template-columns:1fr;
+  }
 }
 
 .product-card{
@@ -686,22 +768,39 @@ color:#666;
 }
 
 .product-card button{
+  margin:20px;
+  width:calc(100% - 40px);
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
 
-margin:20px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color:#fff;
 
-width:calc(100% - 40px);
+  box-shadow: 0 10px 25px rgba(212,175,55,.35);
+  font-weight:600;
+  transition:.4s ease;
+}
 
-padding:14px;
+.product-card button:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(212,175,55,.55);
+}
 
-border:none;
+.product-card button:active{
+  transform: scale(0.96);
+}
 
-background:#5BAE5B;
-
-color:white;
-
-border-radius:12px;
-
-cursor:pointer;
+.enquiry-bar button{
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color:white;
+  border:none;
+  padding:12px 25px;
+  border-radius:50px;
+  cursor:pointer;
+  box-shadow: 0 10px 25px rgba(212,175,55,.35);
+}
 
 }
 
@@ -720,7 +819,7 @@ Selected Products:
 
 </span>
 
-<button onclick="openWhatsapp()">
+<button class="gold-glow-btn" onclick="openWhatsapp()">
 
 Enquire Now
 
@@ -757,20 +856,34 @@ align-items:center;
 
 }
 
-.enquiry-bar button{
+.gold-glow-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 
-background:#5BAE5B;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color:#fff;
+  border:none;
 
-border:none;
+  padding:18px 40px;
 
-padding:12px 25px;
+  cursor:pointer;
+  border-radius:14px;
 
-border-radius:50px;
+  font-size:18px;
+  font-weight:600;
 
-color:white;
+  transition:all .4s ease;
+  box-shadow:0 10px 25px rgba(212,175,55,.35);
+}
 
-cursor:pointer;
+.gold-glow-btn:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(212,175,55,.55);
+}
 
+.gold-glow-btn:active{
+  transform: scale(0.96);
 }
 
 </style>
@@ -851,7 +964,7 @@ gap:30px;
 width:max-content;
 
 animation:
-galleryScroll 35s linear infinite;
+galleryScroll 22s linear infinite;
 
 }
 
@@ -1151,7 +1264,7 @@ gap:35px;
 width:max-content;
 
 animation:
-whyScroll 28s linear infinite;
+whyScroll 18s linear infinite;
 
 }
 
@@ -1354,9 +1467,7 @@ id="customerMessage"
 placeholder="Tell us your requirements"
 rows="6"></textarea>
 
-<button
-onclick="sendWhatsAppEnquiry()">
-
+<button class="gold-glow-btn" onclick="sendWhatsAppEnquiry()">
 Send WhatsApp Enquiry
 
 </button>
@@ -1378,13 +1489,17 @@ background:#FFFDF7;
 }
 
 .contact-container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px;
+  align-items:stretch;
+}
 
-display:grid;
-
-grid-template-columns:
-1fr 1fr;
-
-gap:50px;
+@media (max-width:768px){
+  .contact-container{
+    grid-template-columns:1fr;
+  }
+}
 
 align-items:start;
 
@@ -1695,7 +1810,7 @@ FOOTER
 
 <div class="footer-logo">
 
-<img src="https://res.cloudinary.com/dtxjnoy4m/image/upload/v1781010092/photo_2026-06-09_18-30-35_jwdabm.jpg">
+<img src="https://res.cloudinary.com/dtxjnoy4m/image/upload/v1781104428/photo_2026-06-09_18-30-35_jwdabm.png">
 
 </div>
 
@@ -1777,209 +1892,187 @@ FINAL JAVASCRIPT
 let enquiryProducts = [];
 
 function addProduct(product){
-let enquiryProducts = [];
 
-if(!enquiryProducts.includes(product)){
+  if(!enquiryProducts.includes(product)){
+    enquiryProducts.push(product);
+  }
 
-enquiryProducts.push(product);
-
+  updateEnquiryBar();
 }
 
-document.getElementById(
-'productCount'
-).innerText =
-enquiryProducts.length;
-
+function updateEnquiryBar(){
+  document.getElementById('productCount').innerText = enquiryProducts.length;
 }
 
 function openWhatsapp(){
 
-let name =
-document.getElementById("customerName")?.value || "";
+  if(enquiryProducts.length === 0){
+    alert("Please add at least one product to enquiry");
+    return;
+  }
 
-let phone =
-document.getElementById("customerPhone")?.value || "";
+  let name = document.getElementById("customerName")?.value || "";
+  let phone = document.getElementById("customerPhone")?.value || "";
+  let email = document.getElementById("customerEmail")?.value || "";
+  let message = document.getElementById("customerMessage")?.value || "";
 
-let email =
-document.getElementById("customerEmail")?.value || "";
-
-let message =
-document.getElementById("customerMessage")?.value || "";
-
-let text =
-
+  let text =
 `Hello Sri Sankara Hitech Paper,
 
 Name: ${name}
-
 Phone: ${phone}
-
 Email: ${email}
 
-Interested Products:
-
+Selected Products:
 ${enquiryProducts.join("\n")}
 
 Requirement:
-
 ${message}`;
 
-window.open(
-`https://wa.me/919443209781?text=${encodeURIComponent(text)}`,
-'_blank'
-);
-
+  window.open(
+    `https://wa.me/919443209781?text=${encodeURIComponent(text)}`,
+    "_blank"
+  );
 }
-/* HEADER SCROLL EFFECT */
+function sendWhatsAppEnquiry(){
 
+  let name = document.getElementById("customerName").value.trim();
+  let phone = document.getElementById("customerPhone").value.trim();
+  let email = document.getElementById("customerEmail").value.trim();
+  let message = document.getElementById("customerMessage").value.trim();
 
+  // NAME validation (alphabets only)
+  let nameRegex = /^[A-Za-z ]+$/;
+  if(!nameRegex.test(name) || name.length < 2){
+    alert("Enter valid name (letters only)");
+    return;
+  }
 
-/* SIMPLE REVEAL ANIMATION */
+  // PHONE validation (10–15 digits)
+  let phoneRegex = /^[0-9]{10,15}$/;
+  if(!phoneRegex.test(phone)){
+    alert("Enter valid phone number (minimum 10 digits)");
+    return;
+  }
 
-const observer =
+  // EMAIL validation
+  let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if(!emailRegex.test(email)){
+    alert("Enter valid email address");
+    return;
+  }
 
-new IntersectionObserver(
+  // MESSAGE validation (letters + numbers + basic symbols)
+  let msgRegex = /^[A-Za-z0-9 ,.()-]{3,}$/;
+  if(!msgRegex.test(message)){
+    alert("Enter valid requirement message");
+    return;
+  }
 
-entries=>{
-
-entries.forEach(
-
-entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.animate(
-
-[
-{
-opacity:0,
-transform:'translateY(50px)'
-},
-{
-opacity:1,
-transform:'translateY(0)'
-}
-],
-
-{
-duration:800,
-fill:'forwards'
-}
-
-);
-
-}
-
-}
-
-);
-
-},
-
-{
-threshold:.15
-}
-
-);
-
-document
-.querySelectorAll(
-'section'
-)
-.forEach(
-
-section=>{
-
-observer.observe(section);
-
-}
-
-);
-
-</script>
-<script>
-
-let enquiryProducts=[];
-
-function addProduct(product){
-
-if(!enquiryProducts.includes(product)){
-
-enquiryProducts.push(product);
-
-}
-
-document.getElementById(
-"productCount"
-).innerHTML =
-enquiryProducts.length;
-
-}
-
-function openWhatsapp(){
-
-let name =
-document.getElementById("name")?.value || "";
-
-let phone =
-document.getElementById("phone")?.value || "";
-
-let email =
-document.getElementById("email")?.value || "";
-
-let message =
-document.getElementById("message")?.value || "";
-
-let text =
-
+  let text =
 `Hello Sri Sankara Hitech Paper,
 
 Name: ${name}
-
 Phone: ${phone}
-
 Email: ${email}
 
-Interested Products:
-
-${enquiryProducts.join("\n")}
-
-Message:
-
+Requirement:
 ${message}`;
 
-window.open(
+  window.open(
+    `https://wa.me/919443209781?text=${encodeURIComponent(text)}`,
+    "_blank"
+  );
+}
 
-`https://wa.me/919443209781?text=${encodeURIComponent(text)}`,
+/* scroll animation */
+const observer = new IntersectionObserver(
+(entries)=>{
 
-'_blank'
+  entries.forEach(entry=>{
 
+    if(entry.isIntersecting){
+
+      entry.target.animate(
+        [
+          {opacity:0, transform:'translateY(50px)'},
+          {opacity:1, transform:'translateY(0)'}
+        ],
+        {
+          duration:800,
+          fill:'forwards'
+        }
+      );
+
+    }
+
+  });
+
+},
+{ threshold:0.15 }
 );
 
+document.querySelectorAll('section').forEach(section=>{
+  observer.observe(section);
+});
+.brochure-btn{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:16px !important;
+
+  min-width:340px;
+  min-height:80px;
+
+  padding:25px 60px !important;
+
+  font-size:24px !important;
+  font-weight:700;
+
+  text-decoration:none;
+  border-radius:18px;
+
+  gap:14px;
+  margin-top:0;
+  margin-bottom:35px;
+}
+.brochure-btn i{
+  margin-right:20px;
+}
+.brochure-btn{
+  gap:12px !important;
 }
 
-/* Slideshow */
-
-const slides =
-document.querySelectorAll(".slide");
-
-let current = 0;
-
-setInterval(()=>{
-
-slides[current].classList.remove("active");
-
-current++;
-
-if(current>=slides.length){
-
-current=0;
-
+.brochure-btn i{
+  font-size:28px;
 }
+.brochure-btn{
+  padding:22px 50px !important;
+  font-size:22px !important;
+  border-radius:18px !important;
+}
+.gold-glow-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
 
-slides[current].classList.add("active");
+  padding:20px 45px;
 
-},4000);
+  font-size:20px;
+  font-weight:700;
+
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color:#fff;
+  border:none;
+  border-radius:14px;
+  cursor:pointer;
+  text-decoration:none;
+
+  transition:all .4s ease;
+  box-shadow:0 10px 25px rgba(212,175,55,.35);
+}
+</script>
 
 </script>
 
